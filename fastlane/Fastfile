@@ -1,5 +1,8 @@
 default_platform :android
 
+#Default
+ENV["APP_NAME"]                     = "R6Companion"
+
 #Crashlytics
 ENV['CRASHLYTICS_API_TOKEN']        = "f984f3a695c3cdd7cd6a38475b6d30b7f398ce4d"
 ENV['CRASHLYTICS_BUILD_SECRET']     = "656d6a02a40d9c035b98871873ca71ce43a897cb6b14cd996b323d8b2c5851b8"
@@ -18,7 +21,7 @@ desc "This lane check that all Unit Test passed in release variant"
 		message: "Master quality OK, all UT are ✅",
 		default_payloads: [:last_git_commit_message, :git_author],
 		payload: {
-		    "App name" => "Android " + ENV["APP_NAME"],
+		    "App name" => ENV["APP_NAME"],
 		    "Version name" => get_version_name,
 		    "Version code" => get_version_code
 		}
