@@ -15,9 +15,14 @@ Install _fastlane_ using
 or alternatively using `brew cask install fastlane`
 
 # Available Actions
-### deploy
+### integration_checkup
 ```
-fastlane deploy
+fastlane integration_checkup
+```
+This lane check that all Unit Test passed in release variant
+### beta
+```
+fastlane beta
 ```
 This lane builds an APK, submit it to Fabric and add a message in the rainboxsix-app slack channel
 

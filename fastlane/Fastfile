@@ -9,8 +9,26 @@ ENV['CRASHLYTICS_GROUPS']           = "rs6internalandroid"
 ENV['SLACK_URL']                    = "https://hooks.slack.com/services/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"
 ENV['FL_SLACK_CHANNEL']             = "#rainboxsix-app"
 
+desc "This lane check that all Unit Test passed in release variant"
+  lane :integration_checkup do
+
+	gradle(task: "testReleaseUnitTest")
+
+	slack(
+		message: "Master quality OK, all UT are ✅",
+		default_payloads: [:last_git_commit_message, :git_author],
+		payload: {
+		    "Changes" => changelog,
+		    "App name" => "Android " + ENV["APP_NAME"],
+		    "Version name" => get_version_name,
+		    "Version code" => get_version_code
+		}
+	)
+
+end
+
 desc "This lane builds an APK, submit it to Fabric and add a message in the rainboxsix-app slack channel"
-  lane :deploy do
+  lane :beta do
 
     increment_version_code()
 
@@ -25,31 +43,44 @@ desc "This lane builds an APK, submit it to Fabric and add a message in the rain
     changelog = prompt(text: "Enter the release note for Crashlytics: ",
                        multi_line_end_keyword: "END")
 
-
     crashlytics(
      	apk_path: ApkPath,
 		notes: changelog
     )
 
-
-    VersionName = get_version_name
-
-    VersionCode = get_version_code
-
-	slackMessageString = "🚀🚀🚀 New version of RainbowSix App #{VersionName} (#{VersionCode}) available on Fabric 🚀🚀🚀"
+	slackMessageString = "🚀🚀🚀 New Beta version of RainbowSix App #{VersionName} (#{VersionCode}) available on Fabric 🚀🚀🚀"
 
 	slack(
-		message: slackMessageString,
-		default_payloads: [],
+		message: "Master quality gate OK",
+		default_payloads: [:last_git_commit_message, :git_author],
 		payload: {
-		    "Changes" => changelog
+		    "Changes" => changelog,
+		    "App name" => "Android " + ENV["APP_NAME"],
+		    "Version name" => get_version_name,
+		    "Version code" => get_version_code
 		}
 	)
 
-	# Commit, tag and push to git
-    git_add(path: ".")
-    git_commit(path: ".", message: "Version bump")
-    add_git_tag(prefix: "build.")
-    push_to_git_remote
+	# TODO Commit, tag and push to git, generate a PR instead of push to master
+    #git_add(path: ".")
+    #git_commit(path: ".", message: "Version bump")
+    #add_git_tag(prefix: "build.")
+    #push_to_git_remote
 
+end
+
+error do |lane, exception, options|
+  slack(
+      message: "(╥﹏╥) Something went wrong (╥﹏╥)",
+      success: false,
+      default_payloads: [:lane, :git_branch, :last_git_commit_message],
+      attachment_properties: {
+          fields: [
+              {
+                  title: "Error message",
+                  value: exception.to_s
+              }
+          ]
+      }
+  )
 end
