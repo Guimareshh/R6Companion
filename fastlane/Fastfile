@@ -18,7 +18,6 @@ desc "This lane check that all Unit Test passed in release variant"
 		message: "Master quality OK, all UT are ✅",
 		default_payloads: [:last_git_commit_message, :git_author],
 		payload: {
-		    "Changes" => changelog,
 		    "App name" => "Android " + ENV["APP_NAME"],
 		    "Version name" => get_version_name,
 		    "Version code" => get_version_code
