@@ -22,8 +22,8 @@ desc "This lane check that all Unit Test passed in release variant"
 		default_payloads: [:last_git_commit_message, :git_author],
 		payload: {
 		    "App name" => ENV["APP_NAME"],
-		    "Version name" => get_version_name,
-		    "Version code" => get_version_code
+		    "Version name" => Actions.lane_context["VERSION_NAME"],
+		    "Version code" => Actions.lane_context["VERSION_CODE"]
 		}
 	)
 
@@ -58,8 +58,8 @@ desc "This lane builds an APK, submit it to Fabric and add a message in the rain
 		payload: {
 		    "Changes" => changelog,
 		    "App name" => "Android " + ENV["APP_NAME"],
-		    "Version name" => get_version_name,
-		    "Version code" => get_version_code
+		    "Version name" => Actions.lane_context["VERSION_NAME"],
+		    "Version code" => Actions.lane_context["VERSION_CODE"]
 		}
 	)
 
