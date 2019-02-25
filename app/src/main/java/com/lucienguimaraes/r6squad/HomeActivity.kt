@@ -5,8 +5,6 @@ import android.os.Bundle
 import com.crashlytics.android.Crashlytics
 import io.fabric.sdk.android.Fabric
 
-
-
 class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
