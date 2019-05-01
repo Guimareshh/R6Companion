@@ -6,9 +6,9 @@ buildscript {
         
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:3.3.1")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.21")
-        classpath("io.fabric.tools:gradle:1.27.0")
+        classpath("com.android.tools.build:gradle:3.4.0")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.31")
+        classpath("io.fabric.tools:gradle:1.28.0")
     }
 }
 
