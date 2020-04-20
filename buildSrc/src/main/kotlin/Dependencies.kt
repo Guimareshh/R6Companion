@@ -2,7 +2,7 @@
 object Versions {
 
     /*** Kotlin ***/
-    const val kotlin = "1.3.71"
+    const val kotlin = "1.3.72"
 
     /** App Settings ***/
     const val androidMinSDK = 23

@@ -1,6 +1,5 @@
 include(":app")
-include(":buildSrc")
-include(":core")
+include(":libraries:navigation")
 
 buildCache {
     local {
