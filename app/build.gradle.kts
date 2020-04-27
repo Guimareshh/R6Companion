@@ -2,17 +2,20 @@ plugins{
     id("com.android.application")
     id("kotlin-android")
     id("kotlin-android-extensions")
+    id("kotlin-kapt")
 }
 
 android {
-    compileSdkVersion(Versions.androidCompileSDK)
-    buildToolsVersion(Versions.androidBuildTools)
+
+    compileSdkVersion(ApplicationSettings.androidCompileSDK)
+    buildToolsVersion(ApplicationSettings.androidBuildTools)
+
     defaultConfig {
         applicationId = "com.lucienguimaraes.r6squad"
-        versionCode = Versions.androidVersionCode
-        versionName = Versions.androidVersionName
-        minSdkVersion(Versions.androidMinSDK)
-        targetSdkVersion(Versions.androidTargetSDK)
+        versionCode = ApplicationSettings.androidVersionCode
+        versionName = ApplicationSettings.androidVersionName
+        minSdkVersion(ApplicationSettings.androidMinSDK)
+        targetSdkVersion(ApplicationSettings.androidTargetSDK)
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
@@ -30,16 +33,31 @@ android {
             signingConfig = signingConfigs.getByName("release")
         }
     }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
-    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    implementation(project(":libraries:network"))
 
     /*** Kotlin ***/
     implementation(Libraries.kotlinStdlib)
+    implementation(Libraries.coroutineAndroid)
+
+    /*** DI ***/
+    api(Libraries.dagger)
+    kapt(Libraries.daggerCompiler)
 
     /*** Android Libraries ***/
     implementation(Libraries.ktx)
     implementation(Libraries.appCompat)
     implementation(Libraries.constraintLayout)
+
+    /*** API Libraries ***/
+    implementation(Libraries.retrofit)
+    implementation(Libraries.moshi)
+    implementation(Libraries.moshiConverter)
 }
