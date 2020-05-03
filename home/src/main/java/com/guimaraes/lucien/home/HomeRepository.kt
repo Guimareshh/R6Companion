@@ -1,21 +1,21 @@
-package com.lucienguimaraes.r6squad
+package com.guimaraes.lucien.home
 
 import com.squareup.moshi.JsonClass
 import retrofit2.http.GET
 
-class GithubRepositoryImpl(
-    private val gitHubApi: GitHubApi
-) : GithubRepository {
+class HomeRepositoryImpl(
+    private val gitHubApi: HomeApi
+) : HomeRepository {
 
     override suspend fun requestRepo(): List<Repo> = gitHubApi.listRepos()
 }
 
-interface GithubRepository {
+interface HomeRepository {
     suspend fun requestRepo(): List<Repo>
 }
 
 
-interface GitHubApi {
+interface HomeApi {
     @GET("users/Guimareshh/repos")
     suspend fun listRepos(): List<Repo>
 

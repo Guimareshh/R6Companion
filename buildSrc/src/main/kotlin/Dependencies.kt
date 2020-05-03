@@ -17,7 +17,7 @@ private object LibrariesVersions {
 
     /*** Kotlin ***/
     const val kotlin = "1.3.72"
-    const val coroutineAndroid = "1.3.5"
+    const val kotlinX = "1.3.5"
 
     /*** Android Libraries ***/
     const val androidKtx = "1.2.0"
@@ -45,8 +45,7 @@ object Libraries {
     /*** Kotlin ***/
     const val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${LibrariesVersions.kotlin}"
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${LibrariesVersions.kotlin}"
-    const val coroutineAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${LibrariesVersions.coroutineAndroid}"
-
+    const val coroutineAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${LibrariesVersions.kotlinX}"
     /*** Android Libraries ***/
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:${LibrariesVersions.constraintLayout}"
     const val ktx = "androidx.core:core-ktx:${LibrariesVersions.androidKtx}"
@@ -60,11 +59,12 @@ object Libraries {
     const val retrofit = "com.squareup.retrofit2:retrofit:${LibrariesVersions.retrofit}"
     const val moshiConverter = "com.squareup.retrofit2:converter-moshi:${LibrariesVersions.retrofit}"
     const val moshi = "com.squareup.moshi:moshi-kotlin:${LibrariesVersions.moshi}"
+    const val moshiCodegen = "com.squareup.moshi:moshi-kotlin-codegen:${LibrariesVersions.moshi}"
 
     /** Testing ***/
     const val mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${LibrariesVersions.mockitoKotlin}"
     const val kluent = "org.amshove.kluent:kluent:${LibrariesVersions.kluent}"
     const val jUnitApi = "org.junit.jupiter:junit-jupiter-api:${LibrariesVersions.jUnit5Version}"
-    const val jUnitParams = "org.junit.jupiter:junit-jupiter-params:${LibrariesVersions.jUnit5Version}"
-    const val jUnitEngine = "org.junit.jupiter:junit-jupiter-engine:${LibrariesVersions.jUnit5Version}"
- }
+    const val coroutineTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${LibrariesVersions.kotlinX}"
+
+}

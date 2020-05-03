@@ -1,8 +1,8 @@
 plugins{
     id("com.android.application")
     id("kotlin-android")
-    id("kotlin-android-extensions")
     id("kotlin-kapt")
+    id("kotlin-android-extensions")
 }
 
 android {
@@ -38,10 +38,16 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
+    viewBinding {
+        isEnabled = true
+    }
 }
 
 dependencies {
+    implementation(project(":libraries:arch"))
     implementation(project(":libraries:network"))
+    implementation(project(":home"))
 
     /*** Kotlin ***/
     implementation(Libraries.kotlinStdlib)
@@ -52,12 +58,6 @@ dependencies {
     kapt(Libraries.daggerCompiler)
 
     /*** Android Libraries ***/
-    implementation(Libraries.ktx)
     implementation(Libraries.appCompat)
     implementation(Libraries.constraintLayout)
-
-    /*** API Libraries ***/
-    implementation(Libraries.retrofit)
-    implementation(Libraries.moshi)
-    implementation(Libraries.moshiConverter)
 }

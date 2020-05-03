@@ -7,14 +7,15 @@ plugins {
 
 dependencies {
     /*** Kotlin ***/
-    implementation(Libraries.kotlinStdlib)
+    api(Libraries.kotlinStdlib)
 
     /*** DI ***/
     api(Libraries.dagger)
     kapt(Libraries.daggerCompiler)
 
     /*** API Libraries ***/
-    implementation(Libraries.retrofit)
-    implementation(Libraries.moshi)
-    implementation(Libraries.moshiConverter)
+    api(Libraries.retrofit)
+    api(Libraries.moshi)
+    api(Libraries.moshiConverter)
+    kapt(Libraries.moshiCodegen)
 }
