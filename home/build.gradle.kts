@@ -26,29 +26,27 @@ android {
 }
 
 dependencies {
-    api(project(":libraries:arch"))
+    implementation(project(":libraries:arch"))
     implementation(project(":libraries:network"))
 
     /*** Kotlin ***/
-    api(Libraries.kotlinStdlib)
-    api(Libraries.coroutineAndroid)
+    implementation(Libraries.kotlinStdlib)
+    implementation(Libraries.coroutineAndroid)
 
     /*** DI ***/
-    api(Libraries.dagger)
+    implementation(Libraries.dagger)
     kapt(Libraries.daggerCompiler)
 
     /*** Android Libraries ***/
-    api(Libraries.appCompat)
-    api(Libraries.constraintLayout)
+    implementation(Libraries.appCompat)
+    implementation(Libraries.constraintLayout)
 
     /*** API Libraries ***/
-    api(Libraries.retrofit)
-    api(Libraries.moshi)
-    api(Libraries.moshiConverter)
-    kapt(Libraries.moshiCodegen)
+    implementation(Libraries.retrofit)
+    implementation(Libraries.moshi)
 
     /** Testing ***/
-    testApi(Libraries.mockitoKotlin)
-    testApi(Libraries.kluent)
-    testApi(Libraries.jUnitApi)
+    testImplementation(Libraries.mockitoKotlin)
+    testImplementation(Libraries.kluent)
+    testImplementation(Libraries.jUnitApi)
 }

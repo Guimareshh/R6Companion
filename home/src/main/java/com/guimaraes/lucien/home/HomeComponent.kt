@@ -4,6 +4,7 @@ import android.view.ViewGroup
 import com.lucienguimaraes.network.NetworkConnector
 import dagger.Provides
 import dagger.Subcomponent
+import kotlinx.coroutines.MainCoroutineDispatcher
 import javax.inject.Scope
 
 @HomeScope
@@ -48,12 +49,29 @@ interface HomeComponent {
         @Provides
         internal fun provideHomeViewModel() = HomeViewModel()
 
+
+        @HomeScope
+        @Provides
+        internal fun provideIn(
+            homeInteractor: HomeInteractor
+        ): HomeInputs = homeInteractor
+
+        @HomeScope
+        @Provides
+        internal fun provideOut(
+            homeViewModel: HomeViewModel
+        ): HomeOutputs = homeViewModel
+
         @HomeScope
         @Provides
         internal fun provideHomeViewHolder(
             viewModel: HomeViewModel,
-            homeInteractor: HomeInteractor
-        ) = HomeViewHolder(rootView)
+            homeInteractor: HomeInteractor,
+            mainCoroutineDispatcher: MainCoroutineDispatcher
+        ) = HomeViewHolder(rootView, mainCoroutineDispatcher).apply {
+            inputs = homeInteractor
+            outputs = viewModel
+        }
     }
 }
 

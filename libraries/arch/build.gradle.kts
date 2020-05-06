@@ -2,7 +2,6 @@ plugins{
     id("com.android.library")
     id("kotlin-android")
     id("kotlin-android-extensions")
-    id("kotlin-kapt")
 }
 
 android {
@@ -27,12 +26,9 @@ android {
 
 dependencies {
     /*** Kotlin ***/
-    api(Libraries.kotlinStdlib)
-
-    /*** DI ***/
-    api(Libraries.dagger)
-    kapt(Libraries.daggerCompiler)
+    implementation(Libraries.kotlinStdlib)
+    implementation(Libraries.coroutineAndroid)
 
     /*** Android Libraries ***/
-    api(Libraries.appCompat)
+    implementation(Libraries.appCompat)
 }

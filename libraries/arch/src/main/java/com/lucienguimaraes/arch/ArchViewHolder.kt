@@ -4,14 +4,25 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.coroutines.*
 
-abstract class ArchViewHolder<V : View, VM : ArchViewModel, IN : Any, OUT : Any>(
+abstract class ArchViewHolder<V : View, IN : Any, OUT : Any>(
     private val rootView: ViewGroup,
-    resId: Int
-) :
-    View.OnAttachStateChangeListener {
+    resId: Int,
+    mainCoroutineDispatcher: MainCoroutineDispatcher
+) : View.OnAttachStateChangeListener {
 
     private val contentView: V
+
+    lateinit var inputs: IN
+    lateinit var outputs: OUT
+
+    protected val context : Context
+        get() = contentView.context
+
+
+    private val job = Job()
+    private val uiScope = CoroutineScope(job + mainCoroutineDispatcher)
 
     init {
         contentView = inflate(rootView.context, rootView, resId)
@@ -36,16 +47,12 @@ abstract class ArchViewHolder<V : View, VM : ArchViewModel, IN : Any, OUT : Any>
         contentView.addOnAttachStateChangeListener(this)
     }
 
-
-    protected abstract fun bindOutputs()
-
     fun showOnRootView() = apply {
+        val rootView = this.rootView
         when (contentView.parent) {
-            rootView -> rootView.bringChildToFront(contentView)
-            null ->  when(contentView.parent) {
-                rootView -> { }
-                null -> rootView.addView(contentView)
+            rootView -> {
             }
+            null -> rootView.addView(contentView)
         }
     }
 
@@ -53,12 +60,21 @@ abstract class ArchViewHolder<V : View, VM : ArchViewModel, IN : Any, OUT : Any>
         (contentView.parent as? ViewGroup)?.removeView(contentView)
     }
 
+    protected fun <V : View> findViewById(resId: Int): V = contentView.findViewById(resId) as V
+
+
+    protected abstract fun setUpView()
+    protected abstract suspend fun  bindOutputs()
+
 
     override fun onViewAttachedToWindow(v: View) {
-        bindOutputs()
+        setUpView()
+        uiScope.launch {
+            bindOutputs()
+        }
     }
 
     override fun onViewDetachedFromWindow(v: View) {
-        TODO("Not yet implemented")
+        job.cancel()
     }
 }

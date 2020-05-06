@@ -54,7 +54,7 @@ dependencies {
     implementation(Libraries.coroutineAndroid)
 
     /*** DI ***/
-    api(Libraries.dagger)
+    implementation(Libraries.dagger)
     kapt(Libraries.daggerCompiler)
 
     /*** Android Libraries ***/

@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
-
 plugins {
     kotlin("jvm")
     id("kotlin-kapt")
@@ -7,15 +5,15 @@ plugins {
 
 dependencies {
     /*** Kotlin ***/
-    api(Libraries.kotlinStdlib)
+    implementation(Libraries.kotlinStdlib)
 
     /*** DI ***/
-    api(Libraries.dagger)
+    implementation(Libraries.dagger)
     kapt(Libraries.daggerCompiler)
 
     /*** API Libraries ***/
     api(Libraries.retrofit)
     api(Libraries.moshi)
-    api(Libraries.moshiConverter)
+    implementation(Libraries.moshiConverter)
     kapt(Libraries.moshiCodegen)
 }
