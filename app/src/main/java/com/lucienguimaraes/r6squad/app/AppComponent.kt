@@ -1,7 +1,7 @@
 package com.lucienguimaraes.r6squad.app
 
 import com.lucienguimaraes.network.NetworkModule
-import com.guimaraes.lucien.home.HomeComponent
+import com.guimaraes.lucien.news.NewsComponent
 import dagger.Component
 import dagger.Module
 import dagger.Provides
@@ -14,7 +14,7 @@ interface ApplicationComponent  {
 
     fun koordinator(): AppKoordinator
 
-    fun plus(module: HomeComponent.Module): HomeComponent
+    fun plus(module: NewsComponent.Module): NewsComponent
 
     @Module(
         includes = [NetworkModule::class]

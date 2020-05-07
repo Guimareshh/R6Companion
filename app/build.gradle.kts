@@ -47,7 +47,7 @@ android {
 dependencies {
     implementation(project(":libraries:arch"))
     implementation(project(":libraries:network"))
-    implementation(project(":home"))
+    implementation(project(":news"))
 
     /*** Kotlin ***/
     implementation(Libraries.kotlinStdlib)

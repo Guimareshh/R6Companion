@@ -1,32 +1,29 @@
-package com.guimaraes.lucien.home
+package com.guimaraes.lucien.news
 
 import android.util.Log
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.lucienguimaraes.arch.ArchViewHolder
 import kotlinx.coroutines.MainCoroutineDispatcher
 import kotlinx.coroutines.flow.collect
 
-class HomeViewHolder(
+class NewsViewHolder(
     rootView: ViewGroup,
     mainCoroutineDispatcher: MainCoroutineDispatcher
-) : ArchViewHolder<ConstraintLayout, HomeInputs, HomeOutputs>(
+) : ArchViewHolder<ConstraintLayout, NewsInputs, NewsOutputs>(
     rootView,
-    R.layout.layout_home,
+    R.layout.layout_news_list,
     mainCoroutineDispatcher
 ) {
-
-    private val title = findViewById<TextView>(R.id.title)
 
     override fun setUpView() {
     }
 
     override suspend fun bindOutputs() {
 
-        outputs.users.collect { it.forEach { repo -> Log.d("repo", repo.name) } }
+        outputs.newsList.collect { it.forEach { news -> Log.d("news", news.title) } }
 
-        outputs.title.collect { title.text = it }
+        outputs.errorMessage.collect { Log.d("news", it) }
+
     }
-
 }

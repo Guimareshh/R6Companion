@@ -1,7 +1,7 @@
 include(":app")
 include(":libraries:arch")
 include(":libraries:network")
-include(":home")
+include(":news")
 
 buildCache {
     local {

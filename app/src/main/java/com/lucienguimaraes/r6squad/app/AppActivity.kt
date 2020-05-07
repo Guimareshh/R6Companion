@@ -17,6 +17,6 @@ class AppActivity : AppCompatActivity() {
 
     private fun showHome() {
         val appComponent = (applicationContext as R6CompanionApplication).applicationComponent
-        appComponent.koordinator().showHome(binding.rootView)
+        appComponent.koordinator().showNewsList(binding.rootView)
     }
 }

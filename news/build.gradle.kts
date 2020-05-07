@@ -40,6 +40,7 @@ dependencies {
     /*** Android Libraries ***/
     implementation(Libraries.appCompat)
     implementation(Libraries.constraintLayout)
+    implementation((Libraries.recyclerView))
 
     /*** API Libraries ***/
     implementation(Libraries.retrofit)
@@ -49,4 +50,5 @@ dependencies {
     testImplementation(Libraries.mockitoKotlin)
     testImplementation(Libraries.kluent)
     testImplementation(Libraries.jUnitApi)
+    testImplementation(Libraries.coroutineTest)
 }

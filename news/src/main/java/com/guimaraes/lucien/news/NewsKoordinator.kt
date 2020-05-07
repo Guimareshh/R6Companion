@@ -1,11 +1,11 @@
-package com.guimaraes.lucien.home
+package com.guimaraes.lucien.news
 
 import com.lucienguimaraes.arch.navigation.BackPressedListener
 import com.lucienguimaraes.arch.navigation.Koordinator
 
-class HomeKoordinatorImpl(
-    component: HomeComponent
-) : Koordinator<HomeComponent>(component), HomeKoordinator, BackPressedListener {
+class NewsKoordinatorImpl(
+    component: NewsComponent
+) : Koordinator<NewsComponent>(component), NewsKoordinator, BackPressedListener {
 
     override fun start() {
         component.viewHolder().showOnRootView()
@@ -18,7 +18,7 @@ class HomeKoordinatorImpl(
     override fun onBackPressed(): Boolean = true
 }
 
-interface HomeKoordinator {
+interface NewsKoordinator {
     fun start()
     fun onRelease()
 }

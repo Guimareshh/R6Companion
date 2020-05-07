@@ -48,8 +48,8 @@ object Libraries {
     const val coroutineAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${LibrariesVersions.kotlinX}"
     /*** Android Libraries ***/
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:${LibrariesVersions.constraintLayout}"
-    const val ktx = "androidx.core:core-ktx:${LibrariesVersions.androidKtx}"
     const val appCompat = "androidx.appcompat:appcompat:${LibrariesVersions.appCompat}"
+    const val recyclerView = "androidx.recyclerview:recyclerview:${LibrariesVersions.appCompat}"
 
     /*** DI ***/
     const val dagger = "com.google.dagger:dagger:${LibrariesVersions.dagger}"

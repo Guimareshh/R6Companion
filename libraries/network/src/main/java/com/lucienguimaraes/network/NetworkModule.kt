@@ -23,7 +23,7 @@ class NetworkModule {
     internal fun provideRetrofit(
         moshi: Moshi
     ) = Retrofit.Builder()
-        .baseUrl("https://api.github.com/")
+        .baseUrl("http://192.168.1.6:8080/")
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .build()
 

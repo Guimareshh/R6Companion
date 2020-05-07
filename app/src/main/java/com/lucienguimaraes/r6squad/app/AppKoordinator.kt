@@ -3,52 +3,52 @@ package com.lucienguimaraes.r6squad.app
 import android.view.ViewGroup
 import com.lucienguimaraes.arch.navigation.BackPressedListener
 import com.lucienguimaraes.arch.navigation.Koordinator
-import com.guimaraes.lucien.home.HomeComponent
-import com.guimaraes.lucien.home.HomeKoordinator
+import com.guimaraes.lucien.news.NewsComponent
+import com.guimaraes.lucien.news.NewsKoordinator
 
 class AppKoordinatorImpl(
     private val appComponent: ApplicationComponent
 ) : Koordinator<ApplicationComponent>(appComponent), AppKoordinator, BackPressedListener {
 
-    private var homeComponent: HomeComponent? = null
-    private var homeKoordinator: HomeKoordinator? = null
+    private var newsComponent: NewsComponent? = null
+    private var newsKoordinator: NewsKoordinator? = null
 
 
     //region AppKoordinatorImpl
     override fun start() {}
 
     override fun onRelease() {
-        dismissHome()
+        dismissNewsList()
     }
 
     override fun onBackPressed(): Boolean = false
     //endregion
 
 
-    //region Home Feature
-    override fun showHome(rootView: ViewGroup) {
-        if(homeKoordinator == null) {
-            homeComponent = appComponent.plus(
-                HomeComponent.Module(rootView) {
-                   dismissHome()
+    //region News Feature
+    override fun showNewsList(rootView: ViewGroup) {
+        if(newsKoordinator == null) {
+            newsComponent = appComponent.plus(
+                NewsComponent.Module(rootView) {
+                   dismissNewsList()
                 }
             )
-            homeKoordinator = homeComponent?.koordinator()
+            newsKoordinator = newsComponent?.koordinator()
         }
 
-        homeKoordinator?.start()
+        newsKoordinator?.start()
     }
 
-    override fun dismissHome() {
-        homeKoordinator?.onRelease()
-        homeKoordinator = null
-        homeComponent = null
+    override fun dismissNewsList() {
+        newsKoordinator?.onRelease()
+        newsKoordinator = null
+        newsComponent = null
     }
     //endregion
 }
 
 interface AppKoordinator {
 
-    fun showHome(rootView: ViewGroup)
-    fun dismissHome()
+    fun showNewsList(rootView: ViewGroup)
+    fun dismissNewsList()
 }
