@@ -40,7 +40,7 @@ dependencies {
     /*** Android Libraries ***/
     implementation(Libraries.appCompat)
     implementation(Libraries.constraintLayout)
-    implementation((Libraries.recyclerView))
+    api(Libraries.recyclerView)
 
     /*** API Libraries ***/
     implementation(Libraries.retrofit)

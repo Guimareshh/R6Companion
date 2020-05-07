@@ -68,11 +68,16 @@ interface NewsComponent {
 
         @NewsScope
         @Provides
+        internal fun provideNewsAdapter() = NewsAdapter()
+
+        @NewsScope
+        @Provides
         internal fun provideNewsViewHolder(
             viewModel: NewsViewModel,
             newsInteractor: NewsInteractor,
+            newsAdapter: NewsAdapter,
             mainCoroutineDispatcher: MainCoroutineDispatcher
-        ) = NewsViewHolder(rootView, mainCoroutineDispatcher).apply {
+        ) = NewsViewHolder(rootView, newsAdapter, mainCoroutineDispatcher).apply {
             inputs = newsInteractor
             outputs = viewModel
         }

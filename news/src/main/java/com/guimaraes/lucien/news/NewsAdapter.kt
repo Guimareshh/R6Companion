@@ -11,20 +11,18 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsItemViewHolder>() {
 
     private var list: List<News> = listOf()
 
-    fun setUsers(items: List<News>) {
+    fun setNewsList(items: List<News>) {
         list = items
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : NewsItemViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = NewsItemViewHolder(
+        LayoutInflater.from(parent.context).inflate(
             R.layout.item_news,
             parent,
             false
         )
-
-        return NewsItemViewHolder(view)
-    }
+    )
 
     override fun getItemCount() = list.size
 
