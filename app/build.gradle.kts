@@ -61,3 +61,4 @@ dependencies {
     implementation(Libraries.appCompat)
     implementation(Libraries.constraintLayout)
 }
+apply(from = "../jacoco.gradle")
