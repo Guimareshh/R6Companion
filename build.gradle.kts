@@ -8,6 +8,7 @@ buildscript {
     dependencies {
         classpath(Libraries.gradleAndroidTools)
         classpath(Libraries.kotlinGradlePlugin)
+        classpath(Libraries.gradleAndroidJUnit5)
     }
 }
 

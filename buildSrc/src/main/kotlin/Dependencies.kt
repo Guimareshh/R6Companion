@@ -14,6 +14,7 @@ private object LibrariesVersions {
 
     /*** Gradle ***/
     const val gradleAndroidTools = "3.6.3"
+    const val gradleAndroidJUnit5 = "1.6.2.0"
 
     /*** Kotlin ***/
     const val kotlin = "1.3.72"
@@ -41,6 +42,7 @@ object Libraries {
 
     /*** Gradle ***/
     const val gradleAndroidTools = "com.android.tools.build:gradle:${LibrariesVersions.gradleAndroidTools}"
+    const val gradleAndroidJUnit5 = "de.mannodermaus.gradle.plugins:android-junit5:${LibrariesVersions.gradleAndroidJUnit5}"
 
     /*** Kotlin ***/
     const val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${LibrariesVersions.kotlin}"
@@ -65,6 +67,7 @@ object Libraries {
     const val mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${LibrariesVersions.mockitoKotlin}"
     const val kluent = "org.amshove.kluent:kluent:${LibrariesVersions.kluent}"
     const val jUnitApi = "org.junit.jupiter:junit-jupiter-api:${LibrariesVersions.jUnit5Version}"
+    const val jUnitEngine = "org.junit.jupiter:junit-jupiter-engine:${LibrariesVersions.jUnit5Version}"
     const val coroutineTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${LibrariesVersions.kotlinX}"
 
 }

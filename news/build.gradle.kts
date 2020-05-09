@@ -3,6 +3,7 @@ plugins{
     id("kotlin-android")
     id("kotlin-kapt")
     id("kotlin-android-extensions")
+    id("de.mannodermaus.android-junit5")
 }
 
 android {
@@ -50,5 +51,7 @@ dependencies {
     testImplementation(Libraries.mockitoKotlin)
     testImplementation(Libraries.kluent)
     testImplementation(Libraries.jUnitApi)
+    testRuntimeOnly(Libraries.jUnitEngine)
     testImplementation(Libraries.coroutineTest)
 }
+apply(from = "../jacoco.gradle")
