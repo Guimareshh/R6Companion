@@ -32,7 +32,7 @@ final Collection<String> viewsExcludes = ["**/*Activity*.*",
                                           "**/*ViewHolder*.*"].asImmutable()
 
 
-task jacocoTestReport(type: JacocoReport, dependsOn: "${unitTestTask}") {
+task jacocoReport(type: JacocoReport, dependsOn: "${unitTestTask}") {
     reports {
         xml.enabled = true
         html.enabled = true
