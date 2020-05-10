@@ -11,25 +11,23 @@ tasks.withType(Test) {
     jacoco.includeNoLocationClasses = true
 }
 
-final Collection<String> androidExcludes =
+final androidExcludes =
         ["**/R.class",
          "**/R\$*.class",
          "**/BuildConfig.*",
          "**/Manifest*.*",
          "**/*Test*.*",
-         'android/**/*.*'].asImmutable()
-
-final Collection<String> dagger2Excludes =
-        ["**/*_MembersInjector.class",
+         "android/**/*.*",
+         "**/*_MembersInjector.class",
          "**/Dagger*Component.class",
          "**/Dagger*Component\$Builder.class",
          "**/*Module_*Factory.class",
          "**/*_Provide*Factory*.*",
-         "**/*_Factory*.*"].asImmutable()
-
-final Collection<String> viewsExcludes = ["**/*Activity*.*",
-                                          "**/*Fragment*.*",
-                                          "**/*ViewHolder*.*"].asImmutable()
+         "**/*_Factory*.*",
+         "**/*Activity*.*",
+         "**/*Fragment*.*",
+         "**/*ViewHolder*.*",
+         "**/*Adapter*.*"]
 
 
 task jacocoReport(type: JacocoReport, dependsOn: "${unitTestTask}") {
@@ -40,11 +38,10 @@ task jacocoReport(type: JacocoReport, dependsOn: "${unitTestTask}") {
 
     afterEvaluate {
 
-        def fileFilter = (androidExcludes + dagger2Excludes + viewsExcludes).asImmutable()
         def debugTree = fileTree(dir: "$project.buildDir/intermediates/javac/${flavor}/classes",
-                excludes: fileFilter)
+                excludes: androidExcludes)
         def kotlinDebugTree = fileTree(dir: "$project.buildDir/tmp/kotlin-classes/${flavor}/",
-                excludes: fileFilter)
+                excludes: androidExcludes)
         def mainSrc = "$project.projectDir/src/main/java"
 
         sourceDirectories.setFrom(files([mainSrc]))
