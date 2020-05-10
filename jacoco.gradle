@@ -27,7 +27,9 @@ final androidExcludes =
          "**/*Activity*.*",
          "**/*Fragment*.*",
          "**/*ViewHolder*.*",
-         "**/*Adapter*.*"]
+         "**/*ViewHolder.*",
+         "**/*Adapter*.*",
+         "**/*Adapter.*"]
 
 
 task jacocoReport(type: JacocoReport, dependsOn: "${unitTestTask}") {
