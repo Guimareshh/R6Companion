@@ -27,9 +27,9 @@ final Collection<String> dagger2Excludes =
          "**/*_Provide*Factory*.*",
          "**/*_Factory*.*"].asImmutable()
 
-final Collection<String> viewsExcludes = ["**/*Activity.kt",
-                                          "**/*Fragment.kt",
-                                          "**/*ViewHolder.kt"].asImmutable()
+final Collection<String> viewsExcludes = ["**/*Activity*.*",
+                                          "**/*Fragment*.*",
+                                          "**/*ViewHolder*.*"].asImmutable()
 
 
 task jacocoTestReport(type: JacocoReport, dependsOn: "${unitTestTask}") {
@@ -38,14 +38,17 @@ task jacocoTestReport(type: JacocoReport, dependsOn: "${unitTestTask}") {
         html.enabled = true
     }
 
-    def fileFilter = (androidExcludes + dagger2Excludes + viewsExcludes).asImmutable()
-    def debugTree = fileTree(dir: "$project.buildDir/intermediates/javac/${flavor}/classes",
-            excludes: fileFilter)
-    def kotlinDebugTree = fileTree(dir: "$project.buildDir/tmp/kotlin-classes/${flavor}/",
-            excludes: fileFilter)
-    def mainSrc = "$project.projectDir/src/main/java"
+    afterEvaluate {
 
-    sourceDirectories.from = files([mainSrc])
-    classDirectories.from = files([debugTree], [kotlinDebugTree])
-    executionData.from = fileTree(dir: project.buildDir, includes: ["jacoco/${unitTestTask}.exec"])
+        def fileFilter = (androidExcludes + dagger2Excludes + viewsExcludes).asImmutable()
+        def debugTree = fileTree(dir: "$project.buildDir/intermediates/javac/${flavor}/classes",
+                excludes: fileFilter)
+        def kotlinDebugTree = fileTree(dir: "$project.buildDir/tmp/kotlin-classes/${flavor}/",
+                excludes: fileFilter)
+        def mainSrc = "$project.projectDir/src/main/java"
+
+        sourceDirectories.setFrom(files([mainSrc]))
+        classDirectories.setFrom(files([debugTree], [kotlinDebugTree]))
+        executionData.setFrom(fileTree(dir: project.buildDir, includes: ["jacoco/${unitTestTask}.exec"]))
+    }
 }
