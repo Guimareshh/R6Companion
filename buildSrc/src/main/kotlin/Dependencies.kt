@@ -7,18 +7,18 @@ object ApplicationSettings {
     const val androidTargetSDK = 29
     const val androidVersionCode = 1
     const val androidVersionName = "0.0.1"
-    const val androidBuildTools = "29.0.2"
+    const val androidBuildTools = "29.0.3"
 }
 
 private object LibrariesVersions {
 
     /*** Gradle ***/
-    const val gradleAndroidTools = "3.6.3"
+    const val gradleAndroidTools = "4.0.1"
     const val gradleAndroidJUnit5 = "1.6.2.0"
 
     /*** Kotlin ***/
-    const val kotlin = "1.3.72"
-    const val kotlinX = "1.3.5"
+    const val kotlin = "1.4.0"
+    const val kotlinX = "1.3.9"
 
     /*** Android Libraries ***/
     const val androidKtx = "1.2.0"
