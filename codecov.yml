@@ -1,0 +1,9 @@
+ignore:
+  - "**/*Activity*.kt"
+  - "**/*ViewHolder*.kt"
+  - "**/*_MembersInjector.class"
+  - "**/Dagger*Component.class"
+  - "**/Dagger*Component\$Builder.class"
+  - "**/*Module_*Factory.class"
+  - "**/*_Provide*Factory*.*"
+  - "**/*_Factory*.*"
